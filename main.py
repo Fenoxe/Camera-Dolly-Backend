@@ -1,12 +1,12 @@
 import time
 import sys
 import pybleno
-import SliderService
+from SliderService import SliderService
 import StartPosCharacteristic
 import EndPosCharacteristic
 import DurationCharacteristic
 import Pins
-import Move
+from Move import Move
 import config
 #import RPi.GPIO as GPIO
 
@@ -36,7 +36,7 @@ def onAdvertisingStart(error):
         bleno.setServices([
             sliderService
         ])
-        
+
 bleno.on('advertisingStart', onAdvertisingStart)
 
 bleno.start()

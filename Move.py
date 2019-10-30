@@ -1,5 +1,5 @@
 import config
-from Error import throw_error
+import Error
 
 class Move:
     
@@ -26,28 +26,28 @@ class Move:
 
     def set_duration(self, duration):
         if duration < config.MIN_DURATION or duration > config.MAX_DURATION:
-            throw_error("duration out of range")
+            Error.throw("duration out of range")
             return 1
 
         self.duration = duration
 
     def calculate_distance(self):
         if not self.start_pos or not self.end_pos:
-            throw_error("start and/or end positions not set")
+            Error.throw("start and/or end positions not set")
             return 1
 
         self.distance = self.end_pos - self.start_pos
         
     def calculate_velocity(self):
         if not self.distance or not self.duration:
-            throw_error("distance and/or duration not set")
+            Error.throw("distance and/or duration not set")
             return 1
 
         velocity = self.distance / self.duration
         speed = abs(velocity)
         
         if speed > config.MAX_SPEED or speed < config.MIN_SPEED:
-            throw_error("velocity is out of range")
+            Error.throw("velocity is out of range")
             return 1
         
         self.velocity = velocity
@@ -58,3 +58,4 @@ class Move:
 
         if self.calculate_velocity():
             return 1
+            
