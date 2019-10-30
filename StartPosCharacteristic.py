@@ -40,7 +40,7 @@ class StartPosCharacteristic(pybleno.Characteristic):
             callback(pybleno.Characteristic.RESULT_INVALID_ATTRIBUTE_LENGTH)
 
         else:
-            parsed = int.from_bytes(data)
+            parsed = int.from_bytes(data, byteorder='big', signed=False)
             if self.move.set_start_pos(parsed / 10):
                 Error.throw("Failed write in Start Pos (#3)")
                 callback(pybleno.Characteristic.RESULT_UNLIKELY_ERROR)
