@@ -1,0 +1,50 @@
+import pybleno
+from UUIDDatabase import UUIDDatabase as ID
+import Error
+import Success
+
+class DurationCharacteristic(pybleno.Characteristic):
+    
+    def __init__(self, move):
+        pybleno.Characteristic.__init__(self, {
+            'uuid': ID.get('Duration Characteristic'),
+            'properties': ['read', 'write'],
+            'descriptors': [
+                pybleno.Descriptor({
+                    'uuid': ID.get('Duration Characteristic Descriptor'),
+                    'value': 'Gets or sets the Duration'
+                })],
+            'value': None
+        })
+
+        self.move = move
+        
+    def onReadRequest(self, offset, callback):
+        if offset:
+            Error.throw("Failed read in Duration")
+            callback(pybleno.Characteristic.RESULT_ATTR_NOT_LONG, None)
+
+        else:
+            duration = self.move.start_pos * 10
+            data = bytes([duration])
+            Success.throw("Read Duration")
+            callback(pybleno.Characteristic.RESULT_SUCCESS, data)
+
+    def onWriteRequest(self, data, offset, withoutResponse, callback):
+        if offset:
+            Error.throw("Failed write in Duration (#1)")
+            callback(pybleno.Characteristic.RESULT_ATTR_NOT_LONG)
+
+        elif len(data) != 1:
+            Error.throw("Failed write in Duration (#2)")
+            callback(pybleno.Characteristic.RESULT_INVALID_ATTRIBUTE_LENGTH)
+
+        else:
+            parsed = int.from_bytes(data)
+            if self.move.set_duration(parsed / 10):
+                Error.throw("Failed write in Duration (#3)")
+                callback(pybleno.Characteristic.RESULT_UNLIKELY_ERROR)
+
+            else:
+                Success.throw("Set Duration")
+                callback(pybleno.Characteristic.RESULT_SUCCESS)
