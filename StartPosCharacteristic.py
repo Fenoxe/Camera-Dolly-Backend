@@ -25,7 +25,7 @@ class StartPosCharacteristic(pybleno.Characteristic):
             callback(pybleno.Characteristic.RESULT_ATTR_NOT_LONG, None)
 
         else:
-            start_pos = self.move.start_pos * 10
+            start_pos = (int) (self.move.start_pos * 10)
             data = bytes([start_pos])
             Success.throw("Read Start Pos")
             callback(pybleno.Characteristic.RESULT_SUCCESS, data)
