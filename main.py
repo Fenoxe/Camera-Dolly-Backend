@@ -8,9 +8,12 @@ import DurationCharacteristic
 import Pins
 from Move import Move
 import config
+import os
 #import RPi.GPIO as GPIO
 
 bleno = pybleno.Bleno()
+
+os.environ['BLENO_DEVICE_NAME'] = 'TT Camera Slider'
 
 # naming and creating the bluetooth service
 sliderService = SliderService(Move())

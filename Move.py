@@ -4,11 +4,11 @@ import Error
 class Move:
     
     def __init__(self):
-        self.start_pos = None
-        self.end_pos = None
-        self.duration = None
-        self.distance = None
-        self.velocity = None
+        self.start_pos = 0
+        self.end_pos = 0
+        self.duration = 0
+        self.distance = 0
+        self.velocity = 0
 
     def set_start_pos(self, start_pos):
         # if start_pos < config.MIN_POS or start_pos > config.MAX_POS:
@@ -58,4 +58,3 @@ class Move:
 
         if self.calculate_velocity():
             return 1
-            
