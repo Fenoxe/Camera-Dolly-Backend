@@ -6,7 +6,9 @@ class UUIDDatabase():
 
     @staticmethod
     def get(purpose):
-        u = uuid.uuid4().hex
-        UUIDDatabase.database[purpose] = u
-        print('got uuid')
+        while True:
+            u = uuid.uuid4().hex[:4]
+            if u not in UUIDDatabase.database:
+                break
+        UUIDDatabase.database[u] = purpose
         return u
