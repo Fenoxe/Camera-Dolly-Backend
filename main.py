@@ -9,7 +9,6 @@ import Pins
 from Move import Move
 import config
 import os
-#import RPi.GPIO as GPIO
 
 bleno = pybleno.Bleno()
 
@@ -51,5 +50,5 @@ input()
 bleno.stopAdvertising()
 bleno.disconnect()
 
-print ('terminated.')
+print('terminated.')
 sys.exit(1)
