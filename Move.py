@@ -1,5 +1,6 @@
 import config
 import Error
+from DriverInterface import DriverInterface
 
 class Move:
     
@@ -9,18 +10,20 @@ class Move:
         self.duration = 0
         self.distance = 0
         self.velocity = 0
+        self.curr_pos = (config.MAX_POS + config.MIN_POS) / 2
+        self.driver_interface = DriverInterface()
 
     def set_start_pos(self, start_pos):
-        # if start_pos < config.MIN_POS or start_pos > config.MAX_POS:
-        #     throw_error("start pos out of range")
-        #     return 1
+        if start_pos < config.MIN_POS or start_pos > config.MAX_POS:
+            Error.throw("start pos out of range")
+            return 1
 
         self.start_pos = start_pos
 
     def set_end_pos(self, end_pos):
-        # if end_pos < config.MIN_POS or end_pos > config.MAX_POS:
-        #     throw_error("end pos out of range")
-        #     return 1
+        if end_pos < config.MIN_POS or end_pos > config.MAX_POS:
+            Error.throw("end pos out of range")
+            return 1
 
         self.end_pos = end_pos
 
@@ -58,3 +61,34 @@ class Move:
 
         if self.calculate_velocity():
             return 1
+
+    def execute_move(self):
+
+        def keep_going(direc):
+            if direc:
+                if self.curr_pos > self.end_pos:
+                    return True
+                return False
+            else:
+                if self.curr_pos < self.end_pos:
+                    return True
+                return False
+            
+
+        dist = 0
+        direc = 0
+        duration = 0
+        delta = 0
+
+        # move slider from curr_pos to start_pos
+        dist = self.start_pos - self.curr_pos
+        if dist < 0:
+            dist = -dist
+            direc = 1
+        duration = self.duration
+
+        self.driver_interface.set_dir(direc)
+        self.driver_interface.set_step(0)
+        
+        while keep_going(direc):
+            self.driver_interface.step(delta)
