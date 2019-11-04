@@ -86,10 +86,21 @@ class Move:
 
         step_count = int(round(dist * config.DIST_TO_STEPS))
 
+        print("curr_pos = " + str(self.curr_pos))
+        print("start_pos = " + str(self.start_pos))
+        print("dist = " + str(dist))
+        print("direc = " + str(direc))
+        print("velocity = " + str(velocity))
+        print("rps = " + str(rps))
+        print("step_delay = " + str(step_delay))
+        print("step_count = " + str(step_count))
+
         # PHASE 1.2: execute move to start_pos
         self.driver_interface.set_dir(direc)
         self.driver_interface.set_step(0)
         
         self.driver_interface.execute(step_delay, step_count)
 
-        self.curr_pos += (direc * -1) * dist
+        self.curr_pos += dist * (1 - 2 * direc)
+
+        print("new_pos = " + str(self.curr_pos))
