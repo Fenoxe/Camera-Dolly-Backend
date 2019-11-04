@@ -1,11 +1,11 @@
 from Pins import Pins as PINS
 import time
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 class DriverInterface:
     
     def __init__(self):
-        GPIO.setmode(GPIO.BCM)
+        GPIO.setmode(GPIO.BOARD)
         GPIO.setup(PINS.all_list, GPIO.OUT)
         GPIO.output(PINS.ENABLE, GPIO.HIGH)
         GPIO.output(PINS.RST, GPIO.HIGH)
