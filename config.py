@@ -9,3 +9,6 @@ MIN_DURATION = 1.5
 MAX_DURATION = 500
 MIN_SPEED = 0.01
 MAX_SPEED = 0.5
+
+# motor attributes
+step_angle = 1.8

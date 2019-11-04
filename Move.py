@@ -1,6 +1,7 @@
 import config
 import Error
 from DriverInterface import DriverInterface
+import time
 
 class Move:
     
@@ -10,6 +11,7 @@ class Move:
         self.duration = 0
         self.distance = 0
         self.velocity = 0
+        self.step_
         self.curr_pos = (config.MAX_POS + config.MIN_POS) / 2
         self.driver_interface = DriverInterface()
 
@@ -61,6 +63,7 @@ class Move:
 
         if self.calculate_velocity():
             return 1
+        
 
     def execute_move(self):
 
@@ -78,7 +81,7 @@ class Move:
         dist = 0
         direc = 0
         duration = 0
-        delta = 0
+        step_delay = 0
 
         # move slider from curr_pos to start_pos
         dist = self.start_pos - self.curr_pos
@@ -91,4 +94,5 @@ class Move:
         self.driver_interface.set_step(0)
         
         while keep_going(direc):
-            self.driver_interface.step(delta)
+            self.driver_interface.step(step_delay)
+            time.sleep(step_delay)
