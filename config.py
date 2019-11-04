@@ -11,4 +11,6 @@ MIN_SPEED = 0.01
 MAX_SPEED = 0.5
 
 # motor attributes
-step_angle = 1.8
+STEP_ANGLE = 1.8
+VEL_TO_RPS = 12.5318852828 # 1/(2pi(r))
+DIST_TO_STEPS = 2506.37705657

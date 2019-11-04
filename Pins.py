@@ -1,6 +1,6 @@
 class Pins:
     """
-    using the Broadcom pin labeling system
+    using the Board pin labeling system
     """
     VCC = 2
     MS1 = 11

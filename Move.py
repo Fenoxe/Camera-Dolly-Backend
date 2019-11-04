@@ -11,7 +11,6 @@ class Move:
         self.duration = 0
         self.distance = 0
         self.velocity = 0
-        self.step_
         self.curr_pos = (config.MAX_POS + config.MIN_POS) / 2
         self.driver_interface = DriverInterface()
 
@@ -80,19 +79,29 @@ class Move:
 
         dist = 0
         direc = 0
-        duration = 0
         step_delay = 0
+        step_count = 0
 
-        # move slider from curr_pos to start_pos
+        # move slider from curr_pos to start_pos | calculations
+        if self.calculate():
+            Error.throw("Calculate Failed")
+
         dist = self.start_pos - self.curr_pos
         if dist < 0:
             dist = -dist
             direc = 1
-        duration = self.duration
+
+        rps = abs(self.velocity) * config.VEL_TO_RPS
+        step_delay = (1 / (rps * 360)) * config.STEP_ANGLE
+
+        step_count = dist * config.DIST_TO_STEPS
 
         self.driver_interface.set_dir(direc)
         self.driver_interface.set_step(0)
         
-        while keep_going(direc):
+        # execute move to start_pos
+        for _ in range(step_count):
             self.driver_interface.step(step_delay)
             time.sleep(step_delay)
+
+        self.curr_pos += (direc * -1) * dist
