@@ -28,15 +28,25 @@ class DriverInterface:
         if step_size == 0 or step_size == 2:
             vals[0] = GPIO.LOW
 
-        for channel, output in PINS.MS_list, vals:
+        for channel, output in zip(PINS.MS_list, vals):
             GPIO.output(channel, output)
 
-    def step(self):
+    def step(self, delay):
         GPIO.output(PINS.STEP, GPIO.HIGH)
-        time.sleep()
+        time.sleep(delay)
         GPIO.output(PINS.STEP, GPIO.LOW)
 
     def terminate(self):
         GPIO.cleanup()
 
 d = DriverInterface()
+
+def test(n):
+    d.set_step(0)
+    d.set_dir(0)
+    for _ in range(10000000):
+        d.step(n)
+        time.sleep(n)
+    d.terminate()
+
+test(0.0000001)
