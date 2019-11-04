@@ -32,7 +32,8 @@ class ExecuteCharacteristic(pybleno.Characteristic):
             parsed = int.from_bytes(data, byteorder='big', signed=False)
             if parsed == 1:
                 Success.throw("Started Exec")
-                if self.move.execute_move():
+                # if self.move.execute_move():
+                if False:
                     Error.throw("Execution Failed")
                     callback(pybleno.Characteristic.RESULT_UNLIKELY_ERROR)
                 else:
