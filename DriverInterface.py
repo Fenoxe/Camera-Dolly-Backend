@@ -7,7 +7,7 @@ class DriverInterface:
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(PINS.all_list, GPIO.OUT)
-        GPIO.output(PINS.ENABLE, GPIO.HIGH)
+        GPIO.output(PINS.ENABLE, GPIO.LOW)
         GPIO.output(PINS.RST, GPIO.HIGH)
         GPIO.output(PINS.SLEEP, GPIO.HIGH)
         GPIO.output(PINS.STEP, GPIO.LOW)
@@ -42,11 +42,7 @@ class DriverInterface:
 d = DriverInterface()
 
 def test(n):
-    d.set_step(0)
-    d.set_dir(0)
     for _ in range(10000000):
         d.step(n)
         time.sleep(n)
     d.terminate()
-
-test(0.0000001)

@@ -12,5 +12,5 @@ class Pins:
     STEP = 33
     DIR = 35
 
-    all_list = [VCC, MS1, MS2, MS3, RST, ENABLE, SLEEP, STEP, DIR]
+    all_list = [MS1, MS2, MS3, RST, ENABLE, SLEEP, STEP, DIR]
     MS_list = [MS1, MS2, MS3]
