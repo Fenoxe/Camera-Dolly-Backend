@@ -65,43 +65,31 @@ class Move:
         
 
     def execute_move(self):
-
-        def keep_going(direc):
-            if direc:
-                if self.curr_pos > self.end_pos:
-                    return True
-                return False
-            else:
-                if self.curr_pos < self.end_pos:
-                    return True
-                return False
-            
-
+        
+        # PHASE 1.1: move slider from curr_pos to start_pos | calculations
         dist = 0
         direc = 0
+        rps = 0
         step_delay = 0
         step_count = 0
-
-        # move slider from curr_pos to start_pos | calculations
-        if self.calculate():
-            Error.throw("Calculate Failed")
+        velocity = 0
 
         dist = self.start_pos - self.curr_pos
         if dist < 0:
             dist = -dist
             direc = 1
 
-        rps = abs(self.velocity) * config.VEL_TO_RPS
+        rps = abs(velocity) * config.VEL_TO_RPS
         step_delay = (1 / (rps * 360)) * config.STEP_ANGLE
 
-        step_count = round(dist * config.DIST_TO_STEPS)
+        step_count = int(round(dist * config.DIST_TO_STEPS))
 
+        velocity = config.DEFAULT_VELOCITY
+
+        # PHASE 1.2: execute move to start_pos
         self.driver_interface.set_dir(direc)
         self.driver_interface.set_step(0)
         
-        # execute move to start_pos
-        for _ in range(step_count):
-            self.driver_interface.step(step_delay)
-            time.sleep(step_delay)
+        self.driver_interface.execute(step_delay, step_count)
 
         self.curr_pos += (direc * -1) * dist

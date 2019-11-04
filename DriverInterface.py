@@ -31,18 +31,13 @@ class DriverInterface:
         for channel, output in zip(PINS.MS_list, vals):
             GPIO.output(channel, output)
 
-    def step(self, delay):
-        GPIO.output(PINS.STEP, GPIO.HIGH)
-        time.sleep(delay)
-        GPIO.output(PINS.STEP, GPIO.LOW)
+    def execute(self, step_delay, step_count):
+        delay = step_delay / 2
+        for _ in range(step_count):
+            GPIO.output(PINS.STEP, GPIO.HIGH)
+            time.sleep(delay)
+            GPIO.output(PINS.STEP, GPIO.LOW)
+            time.sleep(delay)
 
     def terminate(self):
         GPIO.cleanup()
-
-d = DriverInterface()
-
-def test(n):
-    for _ in range(10000000):
-        d.step(n)
-        time.sleep(n)
-    d.terminate()
