@@ -35,7 +35,7 @@ class DurationCharacteristic(pybleno.Characteristic):
             Error.throw("Failed write in Duration (#1)")
             callback(pybleno.Characteristic.RESULT_ATTR_NOT_LONG)
 
-        elif len(data) != 1:
+        elif len(data) != 2:
             Error.throw("Failed write in Duration (#2)")
             callback(pybleno.Characteristic.RESULT_INVALID_ATTRIBUTE_LENGTH)
 

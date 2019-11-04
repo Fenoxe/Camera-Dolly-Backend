@@ -3,6 +3,7 @@ from UUIDDatabase import UUIDDatabase as ID
 from StartPosCharacteristic import *
 from EndPosCharacteristic import *
 from DurationCharacteristic import *
+from ExecuteCharacteristic import *
 
 class SliderService(BlenoPrimaryService):
     def __init__(self, move):
@@ -11,6 +12,7 @@ class SliderService(BlenoPrimaryService):
             'characteristics': [
                 StartPosCharacteristic(move),
                 EndPosCharacteristic(move),
-                DurationCharacteristic(move)
+                DurationCharacteristic(move),
+                ExecuteCharacteristic(move)
             ]
         })
