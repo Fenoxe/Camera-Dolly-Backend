@@ -94,7 +94,7 @@ class Move:
         rps = abs(self.velocity) * config.VEL_TO_RPS
         step_delay = (1 / (rps * 360)) * config.STEP_ANGLE
 
-        step_count = dist * config.DIST_TO_STEPS
+        step_count = (int) round(dist * config.DIST_TO_STEPS)
 
         self.driver_interface.set_dir(direc)
         self.driver_interface.set_step(0)
