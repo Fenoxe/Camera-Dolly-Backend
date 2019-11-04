@@ -69,22 +69,22 @@ class Move:
         # PHASE 1.1: move slider from curr_pos to start_pos | calculations
         dist = 0
         direc = 0
+        velocity = 0
         rps = 0
         step_delay = 0
         step_count = 0
-        velocity = 0
 
         dist = self.start_pos - self.curr_pos
         if dist < 0:
             dist = -dist
             direc = 1
 
+        velocity = config.DEFAULT_VELOCITY
+
         rps = abs(velocity) * config.VEL_TO_RPS
         step_delay = (1 / (rps * 360)) * config.STEP_ANGLE
 
         step_count = int(round(dist * config.DIST_TO_STEPS))
-
-        velocity = config.DEFAULT_VELOCITY
 
         # PHASE 1.2: execute move to start_pos
         self.driver_interface.set_dir(direc)
