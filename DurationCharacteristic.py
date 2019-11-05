@@ -18,7 +18,7 @@ class DurationCharacteristic(pybleno.Characteristic):
         })
 
         self.move = move
-        
+    
     def onReadRequest(self, offset, callback):
         if offset:
             Error.throw("Failed read in Duration")
