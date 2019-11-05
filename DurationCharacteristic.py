@@ -1,5 +1,4 @@
 import pybleno
-from UUIDDatabase import UUIDDatabase as ID
 import Error
 import Success
 
@@ -7,11 +6,11 @@ class DurationCharacteristic(pybleno.Characteristic):
     
     def __init__(self, move):
         pybleno.Characteristic.__init__(self, {
-            'uuid': ID.get('Duration Characteristic'),
+            'uuid': 'a3a1',
             'properties': ['read', 'write'],
             'descriptors': [
                 pybleno.Descriptor({
-                    'uuid': ID.get('Duration Characteristic Descriptor'),
+                    'uuid': 'a3a2',
                     'value': 'Gets or sets the Duration'
                 })],
             'value': None

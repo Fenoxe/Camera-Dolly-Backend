@@ -1,5 +1,4 @@
 import pybleno
-from UUIDDatabase import UUIDDatabase as ID
 import Error
 import Success
 
@@ -7,11 +6,11 @@ class ExecuteCharacteristic(pybleno.Characteristic):
     
     def __init__(self, move):
         pybleno.Characteristic.__init__(self, {
-            'uuid': ID.get('Execute Characteristic'),
+            'uuid': 'a4a1',
             'properties': ['write'],
             'descriptors': [
                 pybleno.Descriptor({
-                    'uuid': ID.get('Execute Characteristic Descriptor'),
+                    'uuid': 'a4a2',
                     'value': 'Starts the Move'
                 })],
             'value': None

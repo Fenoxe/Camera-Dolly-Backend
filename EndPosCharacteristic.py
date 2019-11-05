@@ -1,5 +1,4 @@
 import pybleno
-from UUIDDatabase import UUIDDatabase as ID
 import Error
 import Success
 
@@ -7,11 +6,11 @@ class EndPosCharacteristic(pybleno.Characteristic):
     
     def __init__(self, move):
         pybleno.Characteristic.__init__(self, {
-            'uuid': ID.get('End Position Characteristic'),
+            'uuid': 'a2a1',
             'properties': ['read', 'write'],
             'descriptors': [
                 pybleno.Descriptor({
-                    'uuid': ID.get('End Position Characteristic Descriptor'),
+                    'uuid': 'a2a2',
                     'value': 'Gets or sets the End Position'
                 })],
             'value': None

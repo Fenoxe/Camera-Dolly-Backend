@@ -1,5 +1,4 @@
 import pybleno
-from UUIDDatabase import UUIDDatabase as ID
 import Error
 import Success
 
@@ -7,11 +6,11 @@ class StartPosCharacteristic(pybleno.Characteristic):
     
     def __init__(self, move):
         pybleno.Characteristic.__init__(self, {
-            'uuid': '9b2e',
+            'uuid': 'a1a1',
             'properties': ['read', 'write'],
             'descriptors': [
                 pybleno.Descriptor({
-                    'uuid': '9ce8',
+                    'uuid': 'a1a2',
                     'value': 'Gets or sets the Start Position'
                 })],
             'value': None
