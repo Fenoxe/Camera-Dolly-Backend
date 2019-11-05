@@ -2,6 +2,7 @@ from DriverInterface import DriverInterface
 import time
 from Move import Move
 import Config as config
+from MicrosteppingAlgorithm import MicrosteppingAlgorithm
 
 def di_test():
     d = DriverInterface()
@@ -124,26 +125,32 @@ def basic_test(step_delay, step_count, direc, ms):
 
     print("Finished.")
 
-def side_to_side(step_delay, ms):
+def side_to_side(dist, duration):
     print("Side to side test started")
 
     d = DriverInterface()
 
-    dist = 0.3 # +/-
-    step_count = dist * config.DIST_TO_STEPS
+    velocity = dist / duration
+    rps = velocity * config.VEL_TO_RPS
+    step_delay = (1 / (rps * 360)) * config.STEP_ANGLE
+    ms = MicrosteppingAlgorithm.calculate(step_delay)
+    step_count = dist * config.DIST_TO_STEPS * pow(2, ms)
+    step_delay = step_delay / pow(2, ms)
     d.set_step(ms)
     
-    #prologue
     d.set_dir(0)
     d.execute(step_delay, step_count)
+    time.sleep(0.3)
+
     for _ in range(5):
         d.set_dir(0)
         d.execute(step_delay, 2 * step_count)
-
         time.sleep(0.3)
 
         d.set_dir(1)
         d.execute(step_delay, 2 * step_count)
+        time.sleep(0.3)
+
     d.set_dir(0)
     d.execute(step_delay, step_count)
 

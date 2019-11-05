@@ -9,7 +9,7 @@ MAX_SPEED = 0.18353184282
 # motor attributes
 STEP_ANGLE = 1.8
 VEL_TO_RPS = 9.88319028614 # 1/(2pi(r))
-DIST_TO_STEPS = 1976.63805723 # (360)/(1.8*2pi(r))
+DIST_TO_STEPS = 1976.63805723 # (360)/(1.8*2pi(r)) ONLY for ms=0
 RADIUS = 0.0161036
 
 # move attributes
