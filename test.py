@@ -47,6 +47,8 @@ def di_test():
     d.execute(sd, sc)
     time.sleep(1)
 
+    d.sleep(1)
+
 def move_test():
     print("Beginning Move.py Test")
     time.sleep(0.5)
@@ -63,6 +65,8 @@ def move_test():
     time.sleep(0.5)
     print("Executing...")
     m.execute_move()
+
+    d.sleep(1)
 
 def current_test(n, t):
     print("Beginning current test")
@@ -103,6 +107,8 @@ def current_test(n, t):
     d.set_step(ms)
 
     d.execute(0.001 * n, int(round(t * 10000 / n)))
+
+    d.sleep(1)
     
 def basic_test(step_delay, step_count, direc, ms):
     print("Basic test started")
@@ -112,5 +118,7 @@ def basic_test(step_delay, step_count, direc, ms):
     d.set_step(ms)
     d.set_dir(direc)
     d.execute(step_delay, step_count)
+
+    d.sleep(1)
 
     print("Finished.")
