@@ -75,23 +75,42 @@ def current_test(n, t):
     d.set_step(ms)
     d.execute(0.001 * n, int(round(t * 10000 / n)))
 
+    time.sleep(1)
+
     ms = 1
     print(ms)
     d.set_step(ms)
     d.execute(0.001 * n, int(round(t * 10000 / n)))
+
+    time.sleep(1)
 
     ms = 2
     print(ms)
     d.set_step(ms)
     d.execute(0.001 * n, int(round(t * 10000 / n)))
 
+    time.sleep(1)
+
     ms = 3
     print(ms)
     d.set_step(ms)
     d.execute(0.001 * n, int(round(t * 10000 / n)))
 
+    time.sleep(1)
+
     ms = 4
     print(ms)
     d.set_step(ms)
+
     d.execute(0.001 * n, int(round(t * 10000 / n)))
     
+def basic_test(step_delay, step_count, direc, ms):
+    print("Basic test started")
+    
+    d = DriverInterface()
+
+    d.set_step(ms)
+    d.set_dir(direc)
+    d.execute(step_delay, step_count)
+
+    print("Finished.")
