@@ -39,7 +39,7 @@ class ExecuteCharacteristic(pybleno.Characteristic):
                 else:
                     Success.throw("Execution Completed")
                     callback(pybleno.Characteristic.RESULT_SUCCESS)
-            elif parsed != 0:
+            elif parsed == 0:
                 Success.throw("Wrote 0 to Execute")
                 callback(pybleno.Characteristic.RESULT_SUCCESS)
 
