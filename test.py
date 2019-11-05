@@ -1,7 +1,8 @@
 from DriverInterface import DriverInterface
 import time
+from Move import Move
 
-def test():
+def di_test():
     d = DriverInterface()
 
     sd = 0.5
@@ -45,3 +46,20 @@ def test():
 
     d.execute(sd, sc)
     time.sleep(1)
+
+def move_test():
+    print("Beginning Move.py Test")
+    time.sleep(0.5)
+    s = 1
+    e = 0.5
+    d = 4
+    print("start = " + str(s))
+    print("end = " + str(e))
+    print("duration = " + str(d))
+    m = Move()
+    m.start_pos = s
+    m.end_pos = e
+    m.duration = d
+    time.sleep(0.5)
+    print("Executing...")
+    m.execute_move()
