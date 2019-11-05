@@ -33,11 +33,14 @@ bleno.on('stateChange', onStateChange)
     
 def onAdvertisingStart(error):
 
+    def on_setServiceError(error):
+        print('setServices: %s'  % ('error ' + error if error else 'success'))
+
     if not error:
         print('advertising...')
         bleno.setServices([
             sliderService
-        ])
+        ], on_setServiceError)
 
 bleno.on('advertisingStart', onAdvertisingStart)
 
