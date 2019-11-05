@@ -143,15 +143,15 @@ def side_to_side(dist, duration):
     time.sleep(0.3)
 
     for _ in range(5):
-        d.set_dir(0)
-        d.execute(step_delay, 2 * step_count)
-        time.sleep(0.3)
-
         d.set_dir(1)
         d.execute(step_delay, 2 * step_count)
         time.sleep(0.3)
 
-    d.set_dir(0)
+        d.set_dir(0)
+        d.execute(step_delay, 2 * step_count)
+        time.sleep(0.3)
+
+    d.set_dir(1)
     d.execute(step_delay, step_count)
 
     d.sleep(1)
