@@ -13,7 +13,7 @@ DIST_TO_STEPS = 1976.63805723 # (360)/(1.8*2pi(r)) ONLY for ms=0
 RADIUS = 0.0161036
 
 # move attributes
-DEFAULT_VELOCITY = 0.15
+DEFAULT_VELOCITY = 0.1
 SLEEP_BETWEEN_MOVE = 2
 
 # compensation

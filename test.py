@@ -177,3 +177,23 @@ def move_alg(dist, duration, direc):
     d.sleep(1)
 
     print("Finished.")
+
+def test_torque():
+    print("Torque Test Began")
+
+    d = DriverInterface()
+
+    dist = 0.5
+
+    ms_list = [0, 1, 2, 3, 4]
+    step_delay_list = [0.001, 0.0025, 0.005, 0.0075, 0.01, 0.025, 0.05]
+
+    for step_delay in step_delay_list:
+        for ms in ms_list:
+            mult = pow(2, ms)
+            step_count = int(round(dist * config.DIST_TO_STEP)) * mult
+            step_delay = step_delay / mult
+            print("MS: " + str(ms) + "   SD: " + str(step_delay))
+            basic_test(step_delay, step_count, 0, ms)
+            d.sleep(1)
+            time.sleep(5)
