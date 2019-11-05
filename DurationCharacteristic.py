@@ -31,6 +31,7 @@ class DurationCharacteristic(pybleno.Characteristic):
             callback(pybleno.Characteristic.RESULT_SUCCESS, data)
 
     def onWriteRequest(self, data, offset, withoutResponse, callback):
+        print("Duration Data:")
         print(data)
         if offset:
             Error.throw("Failed write in Duration (#1)")

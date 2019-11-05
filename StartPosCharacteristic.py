@@ -30,6 +30,8 @@ class StartPosCharacteristic(pybleno.Characteristic):
             callback(pybleno.Characteristic.RESULT_SUCCESS, data)
 
     def onWriteRequest(self, data, offset, withoutResponse, callback):
+        print("StartPos Data:")
+        print(data)
         if offset:
             Error.throw("Failed write in Start Pos (#1)")
             callback(pybleno.Characteristic.RESULT_ATTR_NOT_LONG)

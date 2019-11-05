@@ -19,6 +19,8 @@ class ExecuteCharacteristic(pybleno.Characteristic):
         self.move = move
 
     def onWriteRequest(self, data, offset, withoutResponse, callback):
+        print("Execute Data:")
+        print(data)
         if offset:
             Error.throw("Failed write in Execute (#1)")
             callback(pybleno.Characteristic.RESULT_ATTR_NOT_LONG)

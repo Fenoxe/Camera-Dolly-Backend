@@ -30,6 +30,8 @@ class EndPosCharacteristic(pybleno.Characteristic):
             callback(pybleno.Characteristic.RESULT_SUCCESS, data)
 
     def onWriteRequest(self, data, offset, withoutResponse, callback):
+        print("EndPos Data:")
+        print(data)
         if offset:
             Error.throw("Failed write in End Pos (#1)")
             callback(pybleno.Characteristic.RESULT_ATTR_NOT_LONG)
