@@ -138,7 +138,7 @@ def side_to_side(dist, duration, n):
     step_delay = step_delay / pow(2, ms)
     d.set_step(ms)
     
-    d.set_dir(0)
+    d.set_dir(1)
     d.execute(step_delay, step_count)
     time.sleep(0.3)
 
@@ -148,11 +148,11 @@ def side_to_side(dist, duration, n):
         d.execute(step_delay, 2 * step_count)
         time.sleep(0.3)
 
-        d.set_dir(0)
+        d.set_dir(1)
         d.execute(step_delay, 2 * step_count)
         time.sleep(0.3)
 
-    d.set_dir(1)
+    d.set_dir(0)
     d.execute(step_delay, step_count)
 
     d.sleep(1)
