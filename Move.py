@@ -2,6 +2,7 @@ import config
 import Error
 from DriverInterface import DriverInterface
 import time
+from MicrosteppingAlgorithm import MicrosteppingAlgorithm
 
 class Move:
     
@@ -86,7 +87,12 @@ class Move:
 
         step_delay = (1 / (rps * 360)) * config.STEP_ANGLE
 
-        step_count = int(round(dist * config.DIST_TO_STEPS))
+        ms = MicrosteppingAlgorithm.calculate(step_delay)
+        mult = pow(2, ms)
+
+        step_delay = step_delay / mult
+
+        step_count = int(round(dist * config.DIST_TO_STEPS)) * mult
 
         print("MOVE TO START")
         print("curr_pos = " + str(self.curr_pos))
@@ -95,13 +101,14 @@ class Move:
         print("direc = " + str(direc))
         print("velocity = " + str(velocity))
         print("rps = " + str(rps))
+        print("microstep = 1 / " + str(mult))
         print("step_delay = " + str(step_delay))
         print("step_count = " + str(step_count))
         print("")
 
         # PHASE 1.2: execute move to start_pos
         self.driver_interface.set_dir(direc)
-        self.driver_interface.set_step(0) # MICROSTEPPING?
+        self.driver_interface.set_step(ms)
         
         self.driver_interface.execute(step_delay, step_count)
 
@@ -134,7 +141,12 @@ class Move:
 
         step_delay = (1 / (rps * 360)) * config.STEP_ANGLE
 
-        step_count = int(round(dist * config.DIST_TO_STEPS))
+        ms = MicrosteppingAlgorithm.calculate(step_delay)
+        mult = pow(2, ms)
+
+        step_delay = step_delay / mult
+
+        step_count = int(round(dist * config.DIST_TO_STEPS)) * mult
 
         print("START TO END")
         print("curr_pos = " + str(self.curr_pos))
@@ -143,13 +155,14 @@ class Move:
         print("direc = " + str(direc))
         print("velocity = " + str(velocity))
         print("rps = " + str(rps))
+        print("microstep = 1 / " + str(mult))
         print("step_delay = " + str(step_delay))
         print("step_count = " + str(step_count))
         print("")
 
         # PHASE 2.2: execute move to end_pos
         self.driver_interface.set_dir(direc)
-        self.driver_interface.set_step(0) # MICROSTEPPING?
+        self.driver_interface.set_step(ms)
         
         self.driver_interface.execute(step_delay, step_count)
 
