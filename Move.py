@@ -117,6 +117,8 @@ class Move:
         print("new_pos = " + str(self.curr_pos))
         print("")
 
+        time.sleep(config.SLEEP_BETWEEN_MOVE)
+
         # PHASE 2.1: move slider from start_pos to end_pos | calculations
         dist = 0
         direc = 0

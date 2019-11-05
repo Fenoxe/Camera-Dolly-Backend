@@ -40,10 +40,11 @@ class StartPosCharacteristic(pybleno.Characteristic):
 
         else:
             parsed = int.from_bytes(data, byteorder='big', signed=False)
-            if self.move.set_start_pos(parsed / 10):
+            val = parsed / 10
+            if self.move.set_start_pos(val):
                 Error.throw("Failed write in Start Pos (#3)")
                 callback(pybleno.Characteristic.RESULT_UNLIKELY_ERROR)
 
             else:
-                Success.throw("Set Start Pos")
+                Success.throw("Set Start Pos: " + str(val))
                 callback(pybleno.Characteristic.RESULT_SUCCESS)
