@@ -15,7 +15,8 @@ bleno = pybleno.Bleno()
 os.environ['BLENO_DEVICE_NAME'] = 'TT Camera Slider'
 
 # naming and creating the bluetooth service
-sliderService = SliderService(Move())
+move = Move()
+sliderService = SliderService(move)
 
 def onStateChange(state):
     if (state == 'poweredOn'):
@@ -49,6 +50,8 @@ bleno.start()
 print ('Hit <ENTER> to disconnect')
 
 input()
+
+move.driver_interface.
 
 bleno.stopAdvertising()
 bleno.disconnect()

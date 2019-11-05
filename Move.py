@@ -94,6 +94,7 @@ class Move:
 
         step_count = int(round(dist * config.DIST_TO_STEPS)) * mult
 
+        print()
         print("MOVE TO START")
         print("curr_pos = " + str(self.curr_pos))
         print("start_pos = " + str(self.start_pos))
@@ -104,7 +105,7 @@ class Move:
         print("microstep = 1 / " + str(mult))
         print("step_delay = " + str(step_delay))
         print("step_count = " + str(step_count))
-        print("")
+        print()
 
         # PHASE 1.2: execute move to start_pos
         self.driver_interface.set_dir(direc)
@@ -115,7 +116,7 @@ class Move:
         self.curr_pos += dist * (1 - 2 * direc)
 
         print("new_pos = " + str(self.curr_pos))
-        print("")
+        print()
 
         time.sleep(config.SLEEP_BETWEEN_MOVE)
 
@@ -150,6 +151,7 @@ class Move:
 
         step_count = int(round(dist * config.DIST_TO_STEPS)) * mult
 
+        print()
         print("START TO END")
         print("curr_pos = " + str(self.curr_pos))
         print("start_pos = " + str(self.start_pos))
@@ -160,7 +162,7 @@ class Move:
         print("microstep = 1 / " + str(mult))
         print("step_delay = " + str(step_delay))
         print("step_count = " + str(step_count))
-        print("")
+        print()
 
         # PHASE 2.2: execute move to end_pos
         self.driver_interface.set_dir(direc)
@@ -171,5 +173,6 @@ class Move:
         self.curr_pos += dist * (1 - 2 * direc)
 
         print("new_pos = " + str(self.curr_pos))
+        print()
 
         return 0
