@@ -42,6 +42,7 @@ class StartPosCharacteristic(pybleno.Characteristic):
 
         else:
             parsed = int.from_bytes(data, byteorder='big', signed=False)
+            print("parsed: " + str(parsed))
             val = parsed / 100
             if self.move.set_start_pos(val):
                 Error.throw("Failed write in Start Pos (#3)")
