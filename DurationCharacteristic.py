@@ -25,7 +25,7 @@ class DurationCharacteristic(pybleno.Characteristic):
             callback(pybleno.Characteristic.RESULT_ATTR_NOT_LONG, None)
 
         else:
-            duration = (int) (self.move.duration * 10)
+            duration = int(self.move.duration)
             data = duration.to_bytes(2, "big")
             Success.throw("Read Duration")
             callback(pybleno.Characteristic.RESULT_SUCCESS, data)
@@ -42,11 +42,10 @@ class DurationCharacteristic(pybleno.Characteristic):
 
         else:
             parsed = int.from_bytes(data, byteorder='big', signed=False)
-            val = parsed / 10
-            if self.move.set_duration(val):
+            if self.move.set_duration(parsed):
                 Error.throw("Failed write in Duration (#3)")
                 callback(pybleno.Characteristic.RESULT_UNLIKELY_ERROR)
 
             else:
-                Success.throw("Set Duration: " + str(val))
+                Success.throw("Set Duration: " + str(parsed))
                 callback(pybleno.Characteristic.RESULT_SUCCESS)

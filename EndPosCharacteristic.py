@@ -24,7 +24,7 @@ class EndPosCharacteristic(pybleno.Characteristic):
             callback(pybleno.Characteristic.RESULT_ATTR_NOT_LONG, None)
 
         else:
-            end_pos = (int) (self.move.end_pos * 10)
+            end_pos = (int) (self.move.end_pos * 100)
             data = end_pos.to_bytes(1, "big")
             Success.throw("Read End Pos")
             callback(pybleno.Characteristic.RESULT_SUCCESS, data)
@@ -40,7 +40,7 @@ class EndPosCharacteristic(pybleno.Characteristic):
 
         else:
             parsed = int.from_bytes(data, byteorder='big', signed=False)
-            val = parsed / 10
+            val = parsed / 100
             if self.move.set_end_pos(val):
                 Error.throw("Failed write in End Pos (#3)")
                 callback(pybleno.Characteristic.RESULT_UNLIKELY_ERROR)
