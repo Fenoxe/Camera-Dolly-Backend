@@ -125,7 +125,7 @@ def basic_test(step_delay, step_count, direc, ms):
 
     print("Finished.")
 
-def side_to_side(dist, duration):
+def side_to_side(dist, duration, n):
     print("Side to side test started")
 
     d = DriverInterface()
@@ -142,7 +142,7 @@ def side_to_side(dist, duration):
     d.execute(step_delay, step_count)
     time.sleep(0.3)
 
-    for _ in range(5):
+    for _ in range(n):
         d.set_dir(0)
         d.execute(step_delay, 2 * step_count)
         time.sleep(0.3)
@@ -152,6 +152,25 @@ def side_to_side(dist, duration):
         time.sleep(0.3)
 
     d.set_dir(0)
+    d.execute(step_delay, step_count)
+
+    d.sleep(1)
+
+    print("Finished.")
+
+def move_alg(dist, duration, direc):
+    print("Algorithmic move test started")
+
+    d = DriverInterface()
+
+    velocity = dist / duration
+    rps = velocity * config.VEL_TO_RPS
+    step_delay = (1 / (rps * 360)) * config.STEP_ANGLE
+    ms = MicrosteppingAlgorithm.calculate(step_delay)
+    step_count = int(round(dist * config.DIST_TO_STEPS * pow(2, ms)))
+    step_delay = step_delay / pow(2, ms)
+    d.set_step(ms)
+    d.set_dir(direc)
     d.execute(step_delay, step_count)
 
     d.sleep(1)
