@@ -63,3 +63,30 @@ def move_test():
     time.sleep(0.5)
     print("Executing...")
     m.execute_move()
+
+def current_test(n):
+    print("Beginning current test")
+    time.sleep(0.5)
+    
+    d = DriverInterface()
+
+    ms = 0
+    d.set_step(ms)
+    d.execute(0.001 * n, int(round(10000 / n)))
+
+    ms = 1
+    d.set_step(ms)
+    d.execute(0.001 * n, int(round(10000 / n)))
+
+    ms = 2
+    d.set_step(ms)
+    d.execute(0.001 * n, int(round(10000 / n)))
+
+    ms = 3
+    d.set_step(ms)
+    d.execute(0.001 * n, int(round(10000 / n)))
+
+    ms = 4
+    d.set_step(ms)
+    d.execute(0.001 * n, int(round(10000 / n)))
+    
