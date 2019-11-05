@@ -88,6 +88,7 @@ class Move:
 
         step_count = int(round(dist * config.DIST_TO_STEPS))
 
+        print("MOVE TO START")
         print("curr_pos = " + str(self.curr_pos))
         print("start_pos = " + str(self.start_pos))
         print("dist = " + str(dist))
@@ -96,6 +97,7 @@ class Move:
         print("rps = " + str(rps))
         print("step_delay = " + str(step_delay))
         print("step_count = " + str(step_count))
+        print("")
 
         # PHASE 1.2: execute move to start_pos
         self.driver_interface.set_dir(direc)
@@ -106,6 +108,7 @@ class Move:
         self.curr_pos += dist * (1 - 2 * direc)
 
         print("new_pos = " + str(self.curr_pos))
+        print("")
 
         # PHASE 2.1: move slider from start_pos to end_pos | calculations
         dist = 0
@@ -133,6 +136,7 @@ class Move:
 
         step_count = int(round(dist * config.DIST_TO_STEPS))
 
+        print("START TO END")
         print("curr_pos = " + str(self.curr_pos))
         print("start_pos = " + str(self.start_pos))
         print("dist = " + str(dist))
@@ -141,6 +145,7 @@ class Move:
         print("rps = " + str(rps))
         print("step_delay = " + str(step_delay))
         print("step_count = " + str(step_count))
+        print("")
 
         # PHASE 2.2: execute move to end_pos
         self.driver_interface.set_dir(direc)
