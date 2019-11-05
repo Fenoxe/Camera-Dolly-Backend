@@ -92,7 +92,7 @@ class Move:
 
         step_delay = step_delay / mult
 
-        step_count = int(round(dist * config.DIST_TO_STEPS)) * mult
+        step_count = int(round(dist * config.DIST_TO_STEPS_C)) * mult
 
         print()
         print("MOVE TO START")
@@ -149,7 +149,7 @@ class Move:
 
         step_delay = step_delay / mult
 
-        step_count = int(round(dist * config.DIST_TO_STEPS)) * mult
+        step_count = int(round(dist * config.DIST_TO_STEPS_C)) * mult
 
         print()
         print("START TO END")
