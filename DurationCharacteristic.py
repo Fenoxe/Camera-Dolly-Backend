@@ -43,6 +43,7 @@ class DurationCharacteristic(pybleno.Characteristic):
 
         else:
             parsed = int.from_bytes(data, byteorder='big', signed=False)
+            print("parsed: " + str(parsed))
             if self.move.set_duration(parsed):
                 Error.throw("Failed write in Duration (#3)")
                 callback(pybleno.Characteristic.RESULT_UNLIKELY_ERROR)

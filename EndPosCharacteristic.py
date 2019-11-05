@@ -42,6 +42,7 @@ class EndPosCharacteristic(pybleno.Characteristic):
 
         else:
             parsed = int.from_bytes(data, byteorder='big', signed=False)
+            print("parsed: " + str(parsed))
             val = parsed / 100
             if self.move.set_end_pos(val):
                 Error.throw("Failed write in End Pos (#3)")
