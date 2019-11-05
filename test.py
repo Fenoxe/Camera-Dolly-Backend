@@ -131,7 +131,7 @@ def side_to_side(dist, duration, n):
     d = DriverInterface()
 
     velocity = dist / duration
-    rps = velocity * config.VEL_TO_RPS
+    rps = velocity * config.VEL_TO_RPS_C
     step_delay = (1 / (rps * 360)) * config.STEP_ANGLE
     ms = MicrosteppingAlgorithm.calculate(step_delay)
     step_count = int(round(dist * config.DIST_TO_STEPS_C * pow(2, ms)))
@@ -165,7 +165,7 @@ def move_alg(dist, duration, direc):
     d = DriverInterface()
 
     velocity = dist / duration
-    rps = velocity * config.VEL_TO_RPS
+    rps = velocity * config.VEL_TO_RPS_C
     step_delay = (1 / (rps * 360)) * config.STEP_ANGLE
     ms = MicrosteppingAlgorithm.calculate(step_delay)
     step_count = int(round(dist * config.DIST_TO_STEPS_C * pow(2, ms)))

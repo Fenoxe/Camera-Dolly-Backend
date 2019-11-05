@@ -83,7 +83,7 @@ class Move:
 
         velocity = config.DEFAULT_VELOCITY
 
-        rps = abs(velocity) * config.VEL_TO_RPS
+        rps = abs(velocity) * config.VEL_TO_RPS_C
 
         step_delay = (1 / (rps * 360)) * config.STEP_ANGLE
 
@@ -140,7 +140,7 @@ class Move:
 
         velocity = self.velocity
 
-        rps = abs(velocity) * config.VEL_TO_RPS
+        rps = abs(velocity) * config.VEL_TO_RPS_C
 
         step_delay = (1 / (rps * 360)) * config.STEP_ANGLE
 
