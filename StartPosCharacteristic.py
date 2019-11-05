@@ -7,11 +7,11 @@ class StartPosCharacteristic(pybleno.Characteristic):
     
     def __init__(self, move):
         pybleno.Characteristic.__init__(self, {
-            'uuid': ID.get('Start Position Characteristic'),
+            'uuid': '9b2e',
             'properties': ['read', 'write'],
             'descriptors': [
                 pybleno.Descriptor({
-                    'uuid': ID.get('Start Position Characteristic Descriptor'),
+                    'uuid': '9ce8',
                     'value': 'Gets or sets the Start Position'
                 })],
             'value': None
