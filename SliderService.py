@@ -12,7 +12,7 @@ class SliderService(BlenoPrimaryService):
             'characteristics': [
                 StartPosCharacteristic(move),
                 EndPosCharacteristic(move),
-                DurationCharacteristic(move)
-                #ExecuteCharacteristic(move)
+                DurationCharacteristic(move),
+                ExecuteCharacteristic(move)
             ]
         })
