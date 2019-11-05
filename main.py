@@ -7,7 +7,7 @@ import EndPosCharacteristic
 import DurationCharacteristic
 import Pins
 from Move import Move
-import config
+import Config as config
 import os
 
 bleno = pybleno.Bleno()

@@ -1,4 +1,4 @@
-import config
+import Config as config
 import Error
 from DriverInterface import DriverInterface
 import time

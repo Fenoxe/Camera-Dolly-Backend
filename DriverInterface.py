@@ -9,7 +9,7 @@ class DriverInterface:
         GPIO.setup(PINS.all_list, GPIO.OUT)
         GPIO.output(PINS.ENABLE, GPIO.LOW)
         GPIO.output(PINS.RST, GPIO.HIGH)
-        GPIO.output(PINS.SLEEP, GPIO.HIGH)
+        GPIO.output(PINS.SLEEP, GPIO.LOW)
         GPIO.output(PINS.STEP, GPIO.LOW)
 
     # dir=0 for low, dir=1 for high
@@ -32,10 +32,14 @@ class DriverInterface:
             GPIO.output(channel, output)
 
     def execute(self, step_delay, step_count):
+        GPIO.output(PINS.SLEEP, GPIO.HIGH)
+        time.sleep(0.1)
         for _ in range(step_count):
             GPIO.output(PINS.STEP, GPIO.HIGH)
             GPIO.output(PINS.STEP, GPIO.LOW)
             time.sleep(step_delay)
+        GPIO.output(PINS.SLEEP, GPIO.LOW)
+        time.sleep(0.1)
 
     def terminate(self):
         GPIO.cleanup()

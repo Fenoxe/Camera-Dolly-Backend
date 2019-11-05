@@ -1,8 +1,6 @@
 # bluetooth device attributes
 DEVICE_NAME = "TT Camera Slider"
 
-
-# physical attributes
 MIN_POS = 0.15
 MAX_POS = 1.35
 MIN_DURATION = 1.5
