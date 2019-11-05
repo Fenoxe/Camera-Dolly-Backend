@@ -33,8 +33,8 @@ class DriverInterface:
 
     def execute(self, step_delay, step_count):
         for _ in range(step_count):
-            GPIO.output(PINS.STEP, GPIO.LOW)
             GPIO.output(PINS.STEP, GPIO.HIGH)
+            GPIO.output(PINS.STEP, GPIO.LOW)
             time.sleep(step_delay)
 
     def terminate(self):
