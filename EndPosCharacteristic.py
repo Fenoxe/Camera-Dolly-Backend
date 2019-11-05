@@ -25,7 +25,7 @@ class EndPosCharacteristic(pybleno.Characteristic):
 
         else:
             end_pos = (int) (self.move.end_pos * 10)
-            data = bytes([end_pos])
+            data = end_pos.to_bytes(1, "big")
             Success.throw("Read End Pos")
             callback(pybleno.Characteristic.RESULT_SUCCESS, data)
 

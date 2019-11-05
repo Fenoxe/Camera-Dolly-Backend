@@ -26,7 +26,7 @@ class DurationCharacteristic(pybleno.Characteristic):
 
         else:
             duration = (int) (self.move.duration * 10)
-            data = bytes([duration])
+            data = duration.to_bytes(2, "big")
             Success.throw("Read Duration")
             callback(pybleno.Characteristic.RESULT_SUCCESS, data)
 
