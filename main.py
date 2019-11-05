@@ -51,7 +51,7 @@ print ('Hit <ENTER> to disconnect')
 
 input()
 
-move.driver_interface.
+move.driver_interface.sleep(1)
 
 bleno.stopAdvertising()
 bleno.disconnect()
