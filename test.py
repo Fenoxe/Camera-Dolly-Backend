@@ -196,4 +196,4 @@ def test_torque():
             print("MS: " + str(ms) + "   SD: " + str(step_delay))
             basic_test(step_delay, step_count, 0, ms)
             d.sleep(1)
-            time.sleep(5)
+            time.sleep(3)
