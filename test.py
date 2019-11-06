@@ -170,6 +170,8 @@ def move_alg(dist, duration, direc):
     ms = MicrosteppingAlgorithm.calculate(step_delay)
     step_count = int(round(dist * config.DIST_TO_STEPS * pow(2, ms)))
     step_delay = step_delay / pow(2, ms)
+    print("ms: " + str(ms))
+    print("step_delay: " + str(step_delay))
     d.set_step(ms)
     d.set_dir(direc)
     d.execute(step_delay, step_count)
