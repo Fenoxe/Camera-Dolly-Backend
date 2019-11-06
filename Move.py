@@ -83,7 +83,7 @@ class Move:
 
         velocity = config.DEFAULT_VELOCITY
 
-        rps = abs(velocity) * config.VEL_TO_RPS_C
+        rps = abs(velocity) * config.VEL_TO_RPS
 
         step_delay = (1 / (rps * 360)) * config.STEP_ANGLE
 
@@ -92,7 +92,7 @@ class Move:
 
         step_delay = step_delay / mult
 
-        step_count = int(round(dist * config.DIST_TO_STEPS_C)) * mult
+        step_count = int(round(dist * config.DIST_TO_STEPS)) * mult
 
         print()
         print("MOVE TO START")
@@ -140,7 +140,7 @@ class Move:
 
         velocity = self.velocity
 
-        rps = abs(velocity) * config.VEL_TO_RPS_C
+        rps = abs(velocity) * config.VEL_TO_RPS
 
         step_delay = (1 / (rps * 360)) * config.STEP_ANGLE
 
@@ -149,7 +149,7 @@ class Move:
 
         step_delay = step_delay / mult
 
-        step_count = int(round(dist * config.DIST_TO_STEPS_C)) * mult
+        step_count = int(round(dist * config.DIST_TO_STEPS)) * mult
 
         print()
         print("START TO END")
