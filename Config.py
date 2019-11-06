@@ -6,7 +6,7 @@ MAX_POS = 1.35
 MIN_DURATION = 0
 MAX_DURATION = 600
 MIN_SPEED = 0
-MAX_SPEED = 1
+MAX_SPEED = 5
 
 # motor attributes
 STEP_ANGLE = 1.8
