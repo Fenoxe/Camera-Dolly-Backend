@@ -27,7 +27,7 @@ def onStateChange(state):
             if err:
                 print(err)
 
-        bleno.startAdvertising(config.DEVICE_NAME, [sliderService.uuid, deviceService.uuid], on_startAdvertising)
+        bleno.startAdvertising(config.DEVICE_NAME, [sliderService.uuid], on_startAdvertising)
 
     else:
         bleno.stopAdvertising()
