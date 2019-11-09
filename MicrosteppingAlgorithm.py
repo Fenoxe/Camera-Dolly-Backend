@@ -2,7 +2,8 @@ class MicrosteppingAlgorithm:
 
     @staticmethod
     def calculate(step_delay):
-        b = 0.0001
+        b = 0.0005
+
         if step_delay > (16 * b):
             return 4
         if step_delay > (8 * b):
