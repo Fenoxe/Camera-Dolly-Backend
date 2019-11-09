@@ -35,10 +35,12 @@ class DriverInterface:
         self.sleep(0)
         time.sleep(0.2)
         self.enable(1)
+        delay = step_delay / 2
         for _ in range(step_count):
             GPIO.output(PINS.STEP, GPIO.HIGH)
+            time.sleep(delay)
             GPIO.output(PINS.STEP, GPIO.LOW)
-            time.sleep(step_delay)
+            time.sleep(delay)
         time.sleep(0.5)
         self.enable(0)
 
