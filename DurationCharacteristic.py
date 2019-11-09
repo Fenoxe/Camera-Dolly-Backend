@@ -1,3 +1,5 @@
+# pylint: disable=E0202
+
 import pybleno
 import Error
 import Success

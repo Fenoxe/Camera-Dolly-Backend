@@ -2,6 +2,7 @@ import time
 import sys
 import pybleno
 from SliderService import SliderService
+from DeviceService import DeviceService
 import StartPosCharacteristic
 import EndPosCharacteristic
 import DurationCharacteristic
@@ -17,6 +18,7 @@ os.environ['BLENO_DEVICE_NAME'] = 'TT Camera Slider'
 # naming and creating the bluetooth service
 move = Move()
 sliderService = SliderService(move)
+deviceService = DeviceService(bleno)
 
 def onStateChange(state):
     if (state == 'poweredOn'):
@@ -25,7 +27,7 @@ def onStateChange(state):
             if err:
                 print(err)
 
-        bleno.startAdvertising(config.DEVICE_NAME, [sliderService.uuid], on_startAdvertising)
+        bleno.startAdvertising(config.DEVICE_NAME, [sliderService.uuid, deviceService.uuid], on_startAdvertising)
 
     else:
         bleno.stopAdvertising()
@@ -40,7 +42,8 @@ def onAdvertisingStart(error):
     if not error:
         print('advertising...')
         bleno.setServices([
-            sliderService
+            sliderService,
+            deviceService,
         ], on_setServiceError)
 
 bleno.on('advertisingStart', onAdvertisingStart)
