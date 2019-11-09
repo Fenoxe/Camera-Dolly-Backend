@@ -90,9 +90,9 @@ class Move:
         ms = MicrosteppingAlgorithm.calculate(step_delay)
         mult = pow(2, ms)
 
-        step_delay = step_delay / mult
+        step_delay = step_delay / (mult * config.COMPENSATION)
 
-        step_count = int(round(dist * config.DIST_TO_STEPS)) * mult 
+        step_count = int(round(dist * config.DIST_TO_STEPS)) * mult * config.COMPENSATION 
 
         print()
         print("MOVE TO START")
