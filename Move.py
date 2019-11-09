@@ -81,7 +81,7 @@ class Move:
             dist = -dist
             direc = 1
 
-        velocity = config.DEFAULT_VELOCITY * 3 # hardcode
+        velocity = config.DEFAULT_VELOCITY
 
         rps = abs(velocity) * config.VEL_TO_RPS
 
@@ -138,7 +138,7 @@ class Move:
             dist = -dist
             direc = 1
 
-        velocity = self.velocity * 3
+        velocity = self.velocity
 
         rps = abs(velocity) * config.VEL_TO_RPS
 
