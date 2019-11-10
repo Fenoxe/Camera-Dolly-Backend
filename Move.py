@@ -85,12 +85,12 @@ class Move:
 
         rps = abs(velocity) * config.VEL_TO_RPS
 
-        step_delay = config.STEP_ANGLE / (rps * 360)
+        step_delay = config.STEP_ANGLE * config.COMPENSATION / (rps * 360)
 
         ms = MicrosteppingAlgorithm.calculate(step_delay)
         mult = pow(2, ms)
 
-        step_delay = step_delay / (mult * config.COMPENSATION)
+        step_delay = step_delay / mult
 
         step_count = int(round(dist * config.DIST_TO_STEPS * mult * config.COMPENSATION ))
 
@@ -142,12 +142,12 @@ class Move:
 
         rps = abs(velocity) * config.VEL_TO_RPS
 
-        step_delay = config.STEP_ANGLE / (rps * 360)
+        step_delay = (config.STEP_ANGLE * config.COMPENSATION) / (rps * 360)
 
         ms = MicrosteppingAlgorithm.calculate(step_delay)
         mult = pow(2, ms)
 
-        step_delay = step_delay / (mult * config.COMPENSATION)
+        step_delay = step_delay / mult
 
         step_count = int(round(dist * config.DIST_TO_STEPS * mult * config.COMPENSATION))
 
