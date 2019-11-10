@@ -37,7 +37,8 @@ class RebootCharacteristic(pybleno.Characteristic):
             parsed = int.from_bytes(data, byteorder='big', signed=False)
             if parsed == 1:
                 Success.throw("Started Reboot")
-                DriverInterface.sleep(DriverInterface, 1)
+                di = DriverInterface()
+                di.sleep(1)
                 callback(pybleno.Characteristic.RESULT_SUCCESS)
                 self.blenoObj.stopAdvertising()
                 self.blenoObj.disconnect()
