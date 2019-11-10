@@ -154,7 +154,7 @@ class Move:
         print()
         print("START TO END")
         print("curr_pos = " + str(self.curr_pos))
-        print("start_pos = " + str(self.start_pos))
+        print("end_pos = " + str(self.end_pos))
         print("dist = " + str(dist))
         print("direc = " + str(direc))
         print("velocity = " + str(velocity))
