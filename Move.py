@@ -7,11 +7,11 @@ from MicrosteppingAlgorithm import MicrosteppingAlgorithm
 class Move:
     
     def __init__(self):
-        self.start_pos = 0
-        self.end_pos = 0
-        self.duration = 0
-        self.distance = 0
-        self.velocity = 0
+        self.start_pos = None
+        self.end_pos = None
+        self.duration = None
+        self.distance = None
+        self.velocity = None
         self.curr_pos = (config.MAX_POS + config.MIN_POS) / 2
         self.driver_interface = DriverInterface()
 
@@ -37,14 +37,14 @@ class Move:
         self.duration = duration
 
     def calculate_distance(self):
-        if not self.start_pos or not self.end_pos:
+        if self.start_pos is None or self.end_pos is None:
             Error.throw("start and/or end positions not set")
             return 1
 
         self.distance = self.end_pos - self.start_pos
         
     def calculate_velocity(self):
-        if not self.distance or not self.duration:
+        if self.distance is None or self.duration is None:
             Error.throw("distance and/or duration not set")
             return 1
 
