@@ -12,5 +12,7 @@ class Pins:
     STEP = 33
     DIR = 35
 
+    INITSTOP = 37
+
     all_list = [MS1, MS2, MS3, RST, ENABLE, SLEEP, STEP, DIR]
     MS_list = [MS1, MS2, MS3]

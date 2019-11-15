@@ -12,8 +12,8 @@ class Move:
         self.duration = None
         self.distance = None
         self.velocity = None
-        self.curr_pos = (config.MAX_POS + config.MIN_POS) / 2
         self.driver_interface = DriverInterface()
+        self.curr_pos = self.initial_set()
 
     def set_start_pos(self, start_pos):
         if start_pos < config.MIN_POS or start_pos > config.MAX_POS:
@@ -63,6 +63,31 @@ class Move:
 
         if self.calculate_velocity():
             return 1
+
+    def initial_set(self):
+        direc = 0
+        velocity = 0
+        rps = 0
+        step_delay = 0
+        step_count = 50000
+
+        velocity = config.DEFAULT_VELOCITY / 1.5
+
+        rps = abs(velocity) * config.VEL_TO_RPS
+
+        step_delay = (config.STEP_ANGLE * config.STEP_COMPENSATION) / (rps * 360 * config.COMPENSATION)
+
+        ms = MicrosteppingAlgorithm.calculate(step_delay)
+        mult = pow(2, ms)
+
+        step_delay = step_delay / mult
+
+        self.driver_interface.set_dir(direc)
+        self.driver_interface.set_step(ms)
+
+        self.driver_interface.execute_INITIAL(step_delay, step_count)
+
+        return 1
         
 
     def execute_move(self):

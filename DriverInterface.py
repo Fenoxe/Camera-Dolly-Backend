@@ -7,6 +7,7 @@ class DriverInterface:
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(PINS.all_list, GPIO.OUT)
+        GPIO.setup(PINS.INITSTOP, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.output(PINS.ENABLE, GPIO.HIGH) # by default disabled
         GPIO.output(PINS.RST, GPIO.HIGH)
         GPIO.output(PINS.SLEEP, GPIO.LOW) # by default in sleep mode
@@ -41,6 +42,21 @@ class DriverInterface:
             time.sleep(delay)
             GPIO.output(PINS.STEP, GPIO.LOW)
             time.sleep(delay)
+        time.sleep(0.5)
+        self.enable(0)
+
+    def execute_INITIAL(self, step_delay, step_count):
+        self.sleep(0)
+        time.sleep(0.2)
+        self.enable(1)
+        delay = step_delay / 2
+        for _ in range(step_count):
+            GPIO.output(PINS.STEP, GPIO.HIGH)
+            time.sleep(delay)
+            GPIO.output(PINS.STEP, GPIO.LOW)
+            time.sleep(delay)
+            if GPIO.INPUT(PINS.INITSTOP):
+                break
         time.sleep(0.5)
         self.enable(0)
 
