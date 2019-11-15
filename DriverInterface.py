@@ -55,7 +55,7 @@ class DriverInterface:
             time.sleep(delay)
             GPIO.output(PINS.STEP, GPIO.LOW)
             time.sleep(delay)
-            if GPIO.input(PINS.INITSTOP):
+            if not GPIO.input(PINS.INITSTOP):
                 break
         time.sleep(0.5)
         self.enable(0)
